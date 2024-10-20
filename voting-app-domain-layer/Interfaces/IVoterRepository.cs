@@ -9,6 +9,9 @@ namespace voting_app_domain_layer.Interfaces
 {
     public interface IVoterRepository
     {
-        public List<Voter> GetAllVoters();
+        public Task<List<Voter>> GetAllVoters();
+        public Task<Voter> GetVoterById(int id);
+        public Task InsertNewVoter(Voter voterToInsert);
+        public Task UpdateVoter(Voter voterToInsert);
     }
 }

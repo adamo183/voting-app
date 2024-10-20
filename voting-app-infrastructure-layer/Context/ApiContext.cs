@@ -5,13 +5,14 @@ namespace voting_app_infrastructure_layer.Context
 {
     public class ApiContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ApiContext(DbContextOptions<ApiContext> options) : base(options)
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "VotingApp");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Voter>()
                 .HasKey(e => e.Id);
 

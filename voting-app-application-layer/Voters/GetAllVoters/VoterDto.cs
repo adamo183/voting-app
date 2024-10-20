@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace voting_app_domain_layer.Models
+namespace voting_app_application_layer.Voters.GetAllVoters
 {
-    public class Voter
+    public class VoterDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Candidate Candidate {  get; set; }
-        public int? CandidateId { get; set; }
+        public bool HasVoted { get; set; }
     }
 }

@@ -16,13 +16,16 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.10" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="voting-app-application-layer\voting-app-application-layer.csproj" />
-    <ProjectReference Include="voting-app-domain-layer\voting-app-domain-layer.csproj" />
-    <ProjectReference Include="voting-app-infrastructure-layer\voting-app-infrastructure-layer.csproj" />
+    <ProjectReference Include="..\voting-app-application-layer\voting-app-application-layer.csproj" />
+    <ProjectReference Include="..\voting-app-domain-layer\voting-app-domain-layer.csproj" />
+    <ProjectReference Include="..\voting-app-infrastructure-layer\voting-app-infrastructure-layer.csproj" />
   </ItemGroup>
 
 </Project>

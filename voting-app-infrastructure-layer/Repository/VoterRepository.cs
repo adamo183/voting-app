@@ -12,33 +12,33 @@ namespace voting_app_infrastructure_layer.Repository
 {
     public class VoterRepository : IVoterRepository
     {
-        public VoterRepository() 
+        private readonly ApiContext _context;
+
+        public VoterRepository(ApiContext context)
         {
-            using (var context = new ApiContext())
-            {
-                var authors = new List<Voter>
-                {
-                new Voter
-                {
-                    Name = "tet",
-                },
-                new Voter
-                {
-                    Name = "tetsada",
-                },
-                };
-                context.Voters.AddRange(authors);
-                context.SaveChanges();
-            }
+            _context = context;
         }
 
-        public List<Voter> GetAllVoters()
+        public async Task<List<Voter>> GetAllVoters()
         {
-            using (var context = new ApiContext())
-            {
-                var list = context.Voters.Include(x => x.Vote).ToList();
-                return list;
-            }
+            return await _context.Voters.Include(x => x.Candidate).ToListAsync();
+        }
+
+        public async Task InsertNewVoter(Voter voterToInsert)
+        {
+            _context.Voters.Add(voterToInsert);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateVoter(Voter voterToUpdate)
+        {
+            _context.Voters.Update(voterToUpdate);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Voter> GetVoterById(int id)
+        {
+            return await _context.Voters.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

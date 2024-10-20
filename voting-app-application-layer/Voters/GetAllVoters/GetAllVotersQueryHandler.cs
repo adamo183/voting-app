@@ -16,11 +16,10 @@ namespace voting_app_application_layer.Voters.GetAllVoters
             _voterRepository = voterRepository;
         }
 
-        public Task<List<VoterDto>> Handle(GetAllVotersQuery request, CancellationToken cancellationToken)
+        public async Task<List<VoterDto>> Handle(GetAllVotersQuery request, CancellationToken cancellationToken)
         {
-            var t = _voterRepository.GetAllVoters();
-            var rr = t.Select(x => new VoterDto() { Id = x.Id, HasVoted = x.HasVoted, Name = x.Name }).ToList();
-            return Task.FromResult(rr);
+            var t = await _voterRepository.GetAllVoters();
+            return t.Select(x => new VoterDto() { Id = x.Id, Name = x.Name, HasVoted = x.CandidateId != null }).ToList();
         }
     }
 }
