@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-half">
+      <h3>Voters</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Has voted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of votingList">
+            <td>{{ item.name }}</td>
+            <td>
+              <input type="checkbox" [(ngModel)]="item.voted" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-half">
+      <h3>Candidates</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Votes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of voteSummary">
+            <td>{{ item.name }}</td>
+            <td>{{ item.votes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-half">
+      <label for="dropdown1">I am:</label>
+      <select id="dropdown1" [(ngModel)]="selectedOption1">
+        <option *ngFor="let item of votingList" [value]="item.name">{{ item.name }}</option>
+      </select>
+    </div>
+
+    <div class="col-half">
+      <label for="dropdown2">I vote for:</label>
+      <select id="dropdown2" [(ngModel)]="selectedOption2">
+        <option *ngFor="let item of voteSummary" [value]="item.name">{{ item.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-full">
+      <button (click)="submitForm()">Submit</button>
+    </div>
+  </div>
+</div>
