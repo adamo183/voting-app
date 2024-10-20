@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "voting-app-domain-layer", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "voting-app-application-layer", "..\voting-app-application-layer\voting-app-application-layer.csproj", "{4CBD48A5-A569-42E0-8556-7C72E50403F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "voting-app-integration-test", "..\voting-app-integration-test\voting-app-integration-test.csproj", "{DA7CA363-9890-457E-B29A-00C3878F1B85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4CBD48A5-A569-42E0-8556-7C72E50403F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CBD48A5-A569-42E0-8556-7C72E50403F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CBD48A5-A569-42E0-8556-7C72E50403F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA7CA363-9890-457E-B29A-00C3878F1B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA7CA363-9890-457E-B29A-00C3878F1B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA7CA363-9890-457E-B29A-00C3878F1B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA7CA363-9890-457E-B29A-00C3878F1B85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
