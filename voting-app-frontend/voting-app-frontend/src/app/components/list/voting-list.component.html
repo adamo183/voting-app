@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-half">
+    <div class="col-half table-container">
       <h3>Voters</h3>
       <table>
         <thead>
@@ -13,14 +13,18 @@
           <tr *ngFor="let item of votingList">
             <td>{{ item.name }}</td>
             <td>
-              <input type="checkbox" [(ngModel)]="item.voted" />
+              <input type="checkbox" [(ngModel)]="item.hasVoted" disabled="true" />
             </td>
           </tr>
         </tbody>
       </table>
+      <div class="input-group">
+        <input type="text" [(ngModel)]="newVoterName" placeholder="Enter voter name" />
+        <button (click)="sendVoter()">Send</button>
+      </div>
     </div>
 
-    <div class="col-half">
+    <div class="col-half table-container">
       <h3>Candidates</h3>
       <table>
         <thead>
@@ -30,12 +34,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of voteSummary">
+          <tr *ngFor="let item of candidateList">
             <td>{{ item.name }}</td>
-            <td>{{ item.votes }}</td>
+            <td>{{ item.VotesCount }}</td>
           </tr>
         </tbody>
       </table>
+      <div class="input-group">
+        <input type="text" [(ngModel)]="newCandidateName" placeholder="Enter candidate name" />
+        <button (click)="sendCandidate()">Send</button>
+      </div>
     </div>
   </div>
 
@@ -50,7 +58,7 @@
     <div class="col-half">
       <label for="dropdown2">I vote for:</label>
       <select id="dropdown2" [(ngModel)]="selectedOption2">
-        <option *ngFor="let item of voteSummary" [value]="item.name">{{ item.name }}</option>
+        <option *ngFor="let item of candidateList" [value]="item.name">{{ item.name }}</option>
       </select>
     </div>
   </div>
