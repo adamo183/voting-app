@@ -16,3 +16,4 @@ jobs:
           heroku_app_name: "voting-app-backend"
           heroku_email: "amajerski97@gmail.com"
           usedocker: true
+          appdir: "voting-app"
