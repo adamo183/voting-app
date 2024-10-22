@@ -10,6 +10,7 @@ import { Voter } from "src/app/models/voter";
 import { Candidate } from "src/app/models/candidate";
 import { CandidateAddModel } from "src/app/models/candidateAddModel";
 import { VoterAddModel } from "src/app/models/voterAddModel";
+import { VoteModel } from "src/app/models/voteModel";
 
 @Component({
     selector: 'voting-list',
@@ -24,9 +25,10 @@ import { VoterAddModel } from "src/app/models/voterAddModel";
     public newVoterName: string = '';
     public newCandidateName: string = '';
     public votingList: Array<Voter> = [];
+    public enableVoters: Array<Voter> = [];
     public candidateList: Array<Candidate> = [];
-    public selectedOption1 = '';
-    public selectedOption2 = '';
+    public selectedVoter = 0;
+    public selectedCandidate = 0;
 
     ngOnInit(): void {
       this.getVoters();
@@ -36,7 +38,9 @@ import { VoterAddModel } from "src/app/models/voterAddModel";
     getVoters(){
       this.votingService.getVoters().subscribe(
         (res) => {
-            return this.votingList = res;
+            this.enableVoters = res.filter(x => x.hasVoted == false);
+            this.votingList = res;
+            return;
         });
     }
 
@@ -48,6 +52,19 @@ import { VoterAddModel } from "src/app/models/voterAddModel";
     }
 
     submitForm() {
+      if (this.selectedCandidate && this.selectedVoter)
+      {
+        const newModel: VoteModel = new VoteModel();
+        newModel.candidateId = this.selectedCandidate
+        newModel.voterId = this.selectedVoter
+        this.votingService.postNewVote(newModel).subscribe(
+          (x) => { 
+            this.getCandidates(); 
+            this.getVoters();
+            this.selectedCandidate = 0;
+            this.selectedVoter = 0;
+          });
+      }
     }
 
     sendCandidate() {
@@ -55,7 +72,10 @@ import { VoterAddModel } from "src/app/models/voterAddModel";
       newModel.name = this.newCandidateName;
 
       this.votingService.postNewCandidates(newModel).subscribe(
-        (x) => { this.getCandidates(); });
+        (x) => { 
+          this.newCandidateName = '';
+          this.getCandidates(); 
+        });
     }
 
     sendVoter() {
@@ -63,7 +83,10 @@ import { VoterAddModel } from "src/app/models/voterAddModel";
       newModel.name = this.newVoterName;
 
       this.votingService.postNewVoter(newModel).subscribe(
-        (x) => { this.getVoters(); });
+        (x) => {
+          this.newVoterName = ''; 
+          this.getVoters(); 
+        });
     }
   }
   

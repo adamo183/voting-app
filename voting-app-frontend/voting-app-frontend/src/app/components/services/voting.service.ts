@@ -7,6 +7,7 @@ import { Voter } from "src/app/models/voter";
 import { Candidate } from "src/app/models/candidate";
 import { VoterAddModel } from "src/app/models/voterAddModel";
 import { CandidateAddModel } from "src/app/models/candidateAddModel";
+import { VoteModel } from "src/app/models/voteModel";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,6 @@ export class VotingService {
       private httpClient: HttpClient) { }
 
       getVoters() : Observable<Array<Voter>> { 
-        console.log(`${environment.baseUrl}/Voters/all`  )   
         return this.httpClient.get<Array<Voter>>(`${environment.baseUrl}/Voters/all`)
       }
   
@@ -32,5 +32,8 @@ export class VotingService {
       postNewCandidates(modelToAdd: CandidateAddModel): Observable<boolean> {
         return this.httpClient.post<boolean>(`${environment.baseUrl}/Candidate`,modelToAdd);
       }
-  
+      
+      postNewVote(modelToAdd: VoteModel): Observable<boolean> {
+        return this.httpClient.put<boolean>(`${environment.baseUrl}/Vote`,modelToAdd);
+      }
 }
