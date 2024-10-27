@@ -51,6 +51,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ErrorLoggingMiddleware>();
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
@@ -58,5 +60,7 @@ app.UseCors("AllowAll");
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Urls.Add($"http://*:{port}");
 
 app.Run();

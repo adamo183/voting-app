@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    baseUrl: 'https://localhost:44328'  
+    baseUrl: 'https://voting-app-backend-94002759c85d.herokuapp.com'  
   };
